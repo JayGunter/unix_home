@@ -1,0 +1,1 @@
+o<HTML><HEAD><SCRIPT></SCRIPT></HEAD><BODY><TABLE><TR><TD NOWRAP><FORM><INPUT TYPE=HIDDEN NAME=x VALUE=y><A HREF='http://x.x.x' ONCLICK='doit();return false;'></A></FORM></TD></TR></TABLE></BODY></HTML>

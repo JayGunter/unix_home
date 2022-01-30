@@ -1,0 +1,108 @@
+##### With Apache C*, had to downgrade to Java 8 to avoid startup errors:
+
+https://stackoverflow.com/questions/46936170/cassandra-and-java-9-threadprioritypolicy-42-is-outside-the-allowed-range/48683675#48683675
+
+Now can start C*:
+  /usr/local/bin/cassandra
+And then cqlsh:
+  cqlsh 127.0.0.1
+
+##### Wide vs Skinny rows.
+
+Apparently, early versions of C* modeled all data for a given partition key (the first element of a PK)
+as a single entry they elected to call a row.
+There is an older C* term "column group", not an overload of "row" but not much clearer.
+It is a case of leaking implementation details.  I'd prefer "dataset".
+
+  # "Wide" version has only a single column for the partition key:
+  CREATE TABLE T ( key1 int, key2 int, data int, 
+    PRIMARY KEY (
+      (key1), # partition_key, determines which node contains this data, can contain multiple columns
+      key2    # clustering_key, indexes data, can be several
+    ) 
+  );
+  #
+  # "Skinny" version subdivides partitions, allowing distribution across more nodes:
+    PRIMARY KEY ( (key1, key2 ) )
+
+Confusingly, when using CQL to select all data for that partition key, it returns multiple "rows".
+This makes the behavior of CQL seem much like an RDBMS, but makes discussions of wide vs skinny datasets.  
+A "wide row" is data whose partition key gathers a lot of data (likely comprised of fewer columns).
+A "skinny row" is data whose partition key gathers a less data (likely comprised of more keys).
+So think of a "skinny row" as a smaller dataset, more narrowed by extra keys.
+
+Since CQL doesn't support FOREIGN KEYs, the PRIMARY KEY syntax is both redundant and unclear.
+Better would have been PARTITION KEY(key...) and CLUSTERING KEYS(key...).
+
+##### Weird behavior using UPDATE to insert rows:
+
+create keyspace dev with replication = {'class':'SimpleStrategy','replication_factor':1};
+use dev;
+
+# from: https://stackoverflow.com/questions/16532227/difference-between-update-and-insert-in-cassandra
+# INSERT means update if PK exists.
+# UPDATE can do insert (by using non-null values),
+# BUT if you later UPDATE that row with a null in a column THE ROW DISAPPEARS.
+
+cqlsh:dev> CREATE TABLE T (   pk int,   f1 int,   PRIMARY KEY (pk) );
+cqlsh:dev> INSERT INTO T (pk, f1) VALUES (1, 1);
+cqlsh:dev> UPDATE T SET f1=2 where pk=2;
+cqlsh:dev> SELECT * FROM T;
+
+ pk | f1
+----+----
+  1 |  1
+  2 |  2
+
+(2 rows)
+
+cqlsh:dev> UPDATE T SET f1 = null WHERE pk = 1;
+cqlsh:dev> UPDATE T SET f1 = null WHERE pk = 2;
+cqlsh:dev> SELECT * FROM T;
+
+ pk | f1
+----+------
+  1 | null
+
+(1 rows)
+
+
+
+# Note that you can insert a row with a null in a column:
+
+cqlsh:dev> INSERT INTO T (pk, f1) VALUES (3, null);
+cqlsh:dev> SELECT * FROM T;
+
+ pk | f1
+----+------
+  1 | null
+  3 | null
+
+(2 rows)
+
+# And for a row INSERTed with a null, you can UPDATE that row with a null and the row remains.
+# So C* somehow remembers HOW a row was inserted.
+
+cqlsh:dev> UPDATE T SET f1=null where pk=3;
+cqlsh:dev> SELECT * FROM T;
+
+ pk | f1
+----+------
+  1 | null
+  3 | null
+
+(2 rows)
+
+# But you cannot use UPDATE to insert a row with a null value:
+
+cqlsh:dev> UPDATE T SET f1=null where pk=4;
+cqlsh:dev> SELECT * FROM T;
+
+ pk | f1
+----+------
+  1 | null
+  3 | null
+
+(2 rows)
+
+# So, don't use UPDATE to do inserts!
