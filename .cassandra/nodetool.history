@@ -1,0 +1,35 @@
+2020-02-12 08:55:32,306: -p 7199 tpstats
+2020-02-12 08:56:24,882: -p 7199 tablestats ts
+2020-02-12 08:56:34,979: -p 7199 tablestats t
+2020-02-12 08:56:42,013: -p 7199 tablestats dev.t
+2020-02-12 08:57:32,691: -p 7199 tablestats dev.t
+2020-02-12 08:58:48,042: -p 7199 tablestats dev.t
+2020-02-12 09:02:51,034: -p 7199 tablestats dev.t
+2020-02-12 09:03:14,881: -p 7199 tablestats dev.t
+2020-02-12 09:03:44,880: -p 7199 tablestats dev.t
+2020-02-12 09:04:12,883: -p 7199 tablestats dev.t
+2020-02-12 09:04:45,931: -p 7199 tablestats dev.t
+2020-02-12 09:05:33,948: -p 7199 tablestats dev.t
+2020-02-12 09:05:55,726: -p 7199 tablestats dev.t
+2020-02-12 09:08:18,842: -p 7199 tablestats dev.t
+2020-02-12 09:08:53,274: -p 7199 tablestats dev.t
+2020-02-12 09:09:55,914: -p 7199 tablestats dev.t
+2020-02-12 09:10:06,430: -p 7199 tablestats dev.t
+2020-02-12 09:10:40,668: -p 7199 tablestats dev.t
+2020-02-12 09:10:56,334: -p 7199 tablestats dev.t
+2020-02-12 09:11:29,320: -p 7199 tablestats dev.t
+2020-02-12 09:14:00,642: -p 7199 tablestats dev.t
+2020-02-12 09:14:18,199: -p 7199 tablestats dev.t
+2020-02-12 09:14:27,790: -p 7199 tablestats dev.t
+2020-02-12 09:14:33,578: -p 7199 tablestats dev.t
+2020-02-12 09:14:41,848: -p 7199 tablestats dev.t
+2020-02-12 09:14:52,856: -p 7199 tablestats dev.t
+2020-02-12 09:16:17,824: -p 7199 tablestats dev.t
+2020-02-12 09:16:20,872: -p 7199 tablestats dev.t
+2020-02-12 09:40:37,458: -p 7199 help
+2020-02-12 09:41:29,051: -p 7199 gossipinfo
+2020-02-12 09:42:00,964: -p 7199 status
+2020-02-12 09:42:44,454: -p 7199 version
+2020-02-12 09:43:00,138: -p 7199 ring
+2020-02-12 09:43:43,814: -p 7199 help
+2020-02-12 09:48:04,005: -p 7199 gcstats

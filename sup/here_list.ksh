@@ -125,5 +125,9 @@
     export kubia="/Users/jay/test/docker/http"
     alias ewt='g "/Users/jay/sss/java" '
     export ewt="/Users/jay/sss/java"
-    alias giolc='g "/Users/jay/gunter.io/public_html/test/life-clock" '
-    export giolc="/Users/jay/gunter.io/public_html/test/life-clock"
+    alias giolc='g "/Users/jay/gunter.io/public_html/test/life_clock" '
+    export giolc="/Users/jay/gunter.io/public_html/test/life_clock"
+    alias giom='g "/Users/jay/gunter.io/public_html/molly" '
+    export giom="/Users/jay/gunter.io/public_html/molly"
+    alias gioms='g "/Users/jay/gunter.io/public_html/molly/sdrawkcab" '
+    export gioms="/Users/jay/gunter.io/public_html/molly/sdrawkcab"

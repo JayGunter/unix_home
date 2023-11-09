@@ -833,12 +833,24 @@ upb() {
     echo curl -u jaygunte@gunter.io:'Hspr!2495' -T "$*" ftp://jaygunte@gunter.io/backup/
     curl -u jaygunte@gunter.io:'Hspr!2495' -T "$*" ftp://jaygunte@gunter.io/backup/
 }
-uplc() {
-    echo curl -u jaygunte@gunter.io:'Hspr!2495' -T "$*" ftp://jaygunte@gunter.io/public_html/test/life_clock
-    giolc
-    #for f in main.js word*.js style.css images/* index.html; do
-    for f in circles.html; do
-    #for f in main.js ; do
+upms() {  
+    gioms
+    for f in *.*; do
+	echo curl -T $f ftp://jaygunte@gunter.io/public_html/molly/sdrawkcab/$f --ftp-create-dirs
+	curl -u jaygunte@gunter.io:'Hspr!2495' -T $f ftp://jaygunte@gunter.io/public_html/molly/sdrawkcab/$f --ftp-create-dirs
+    done
+}
+upmolly() {  # usage:  giolc; md v1; cp circles.html life-clock.js v1; uplc v1
+    gioms 
+    for f in question.html questions.js functions.js; do
+	echo curl -T $f ftp://jaygunte@gunter.io/public_html/molly/sdrawkcab/$f --ftp-create-dirs
+	curl -u jaygunte@gunter.io:'Hspr!2495' -T $f ftp://jaygunte@gunter.io/public_html/molly/sdrawkcab/$f --ftp-create-dirs
+    done
+}
+uplc() {  # usage:  giolc; md v1; cp circles.html life-clock.js v1; uplc v1
+    giolc 
+    for f in circles.html life-clock.js; do
+	echo curl -T $f ftp://jaygunte@gunter.io/public_html/test/life_clock/$f --ftp-create-dirs
 	curl -u jaygunte@gunter.io:'Hspr!2495' -T $f ftp://jaygunte@gunter.io/public_html/test/life_clock/$f --ftp-create-dirs
     done
 }
