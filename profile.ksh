@@ -505,6 +505,7 @@ fire()	{ echo $*; $*; }
 
 alias ek='v $A/profile.ksh '
 alias sk='.  $A/profile.ksh'
+alias si='bind -f ~/.inputrc'
 alias hg='history | gi'
 
 alias em='v $A/mac.notes '
@@ -1524,3 +1525,5 @@ ea() {
 
 a kc=kubectl
 a kui=4A/sw/Kui/kubectl-kui
+
+. git.funcs.sh
