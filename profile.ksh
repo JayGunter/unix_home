@@ -864,6 +864,14 @@ upbounce() {
 	curl -u jaygunte@gunter.io:'Hspr!2495' -T $f ftp://jaygunte@gunter.io/public_html/bounce/$f --ftp-create-dirs
     done
 }
+upsal() {
+    cd
+    sup/typeset.sh life/Sal_and_Dee
+    gadd life/Sal_and_Dee life/Sal_and_Dee.html
+    wip
+    gpush
+    curl -u jaygunte@gunter.io:'Hspr!2495' -T life/Sal_and_Dee.html ftp://jaygunte@gunter.io/public_html/life/Sals_Shoulder.html --ftp-create-dirs;
+}
 upclio() {
     #echo FIX THIS TO WRITE TO gunter.io/aaa_config/ AND /aaa/
 #return
