@@ -564,7 +564,8 @@ prepend_path() {      add_to_path prepend PATH $1; }
 
 append_path $sup
 append_path /Applications/MacVim.app/Contents/bin
-prepend_path /usr/local/bin
+#prepend_path /usr/local/bin
+prepend_path /opt/homebrew/bin
 append_path /usr/local/git/bin
 append_path /usr/local/mysql/bin
 append_path /Applications/Meld.app/Contents/MacOS
@@ -863,6 +864,14 @@ upbounce() {
     #for f in main.js ; do
 	curl -u jaygunte@gunter.io:'Hspr!2495' -T $f ftp://jaygunte@gunter.io/public_html/bounce/$f --ftp-create-dirs
     done
+}
+upbev() {
+    cd
+    sup/typeset.sh life/Pink_Bikini
+    gadd life/Sal_and_Dee life/Pink_Bikini.html
+    wip
+    gpush
+    curl -u jaygunte@gunter.io:'Hspr!2495' -T life/Pink_Bikini.html ftp://jaygunte@gunter.io/public_html/life/Pink_Bikini.html --ftp-create-dirs;
 }
 upsal() {
     cd
@@ -1534,4 +1543,4 @@ ea() {
 a kc=kubectl
 a kui=4A/sw/Kui/kubectl-kui
 
-. git.funcs.sh
+. ~/git.funcs.sh
